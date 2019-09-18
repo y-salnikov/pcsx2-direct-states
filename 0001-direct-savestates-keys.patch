@@ -1,0 +1,209 @@
+From f000ce584de31ad5c2fa4172bf1eaffedf1d48fd Mon Sep 17 00:00:00 2001
+From: y-salnikov <y.salnikov65535@gmail.com>
+Date: Wed, 18 Sep 2019 00:40:19 +0400
+Subject: [PATCH] direct savestates keys
+
+---
+ pcsx2/gui/FrameForGS.cpp     |  21 ++++++
+ pcsx2/gui/GlobalCommands.cpp | 139 ++++++++++++++++++++++++++++++++++-
+ 2 files changed, 159 insertions(+), 1 deletion(-)
+
+diff --git a/pcsx2/gui/FrameForGS.cpp b/pcsx2/gui/FrameForGS.cpp
+index fa625be96..a6a5ec022 100644
+--- a/pcsx2/gui/FrameForGS.cpp
++++ b/pcsx2/gui/FrameForGS.cpp
+@@ -85,6 +85,27 @@ void GSPanel::InitDefaultAccelerators()
+ 	m_Accels->Map( AAC( WXK_F12 ),				"Sys_RecordingToggle" );
+ 
+ 	m_Accels->Map( FULLSCREEN_TOGGLE_ACCELERATOR_GSPANEL,		"FullscreenToggle" );
++	
++	m_Accels->Map(AAC(wxKeyCode('0')).Alt(), "States_SaveSlot_direct0");
++	m_Accels->Map(AAC(wxKeyCode('1')).Alt(), "States_SaveSlot_direct1");
++	m_Accels->Map(AAC(wxKeyCode('2')).Alt(), "States_SaveSlot_direct2");
++	m_Accels->Map(AAC(wxKeyCode('3')).Alt(), "States_SaveSlot_direct3");
++	m_Accels->Map(AAC(wxKeyCode('4')).Alt(), "States_SaveSlot_direct4");
++	m_Accels->Map(AAC(wxKeyCode('5')).Alt(), "States_SaveSlot_direct5");
++	m_Accels->Map(AAC(wxKeyCode('6')).Alt(), "States_SaveSlot_direct6");
++	m_Accels->Map(AAC(wxKeyCode('7')).Alt(), "States_SaveSlot_direct7");
++	m_Accels->Map(AAC(wxKeyCode('8')).Alt(), "States_SaveSlot_direct8");
++	m_Accels->Map(AAC(wxKeyCode('9')).Alt(), "States_SaveSlot_direct9");
++	m_Accels->Map(AAC(wxKeyCode('0')), "States_LoadSlot_direct0");
++	m_Accels->Map(AAC(wxKeyCode('1')), "States_LoadSlot_direct1");
++	m_Accels->Map(AAC(wxKeyCode('2')), "States_LoadSlot_direct2");
++	m_Accels->Map(AAC(wxKeyCode('3')), "States_LoadSlot_direct3");
++	m_Accels->Map(AAC(wxKeyCode('4')), "States_LoadSlot_direct4");
++	m_Accels->Map(AAC(wxKeyCode('5')), "States_LoadSlot_direct5");
++	m_Accels->Map(AAC(wxKeyCode('6')), "States_LoadSlot_direct6");
++	m_Accels->Map(AAC(wxKeyCode('7')), "States_LoadSlot_direct7");
++	m_Accels->Map(AAC(wxKeyCode('8')), "States_LoadSlot_direct8");
++	m_Accels->Map(AAC(wxKeyCode('9')), "States_LoadSlot_direct9");
+ }
+ 
+ #ifndef DISABLE_RECORDING
+diff --git a/pcsx2/gui/GlobalCommands.cpp b/pcsx2/gui/GlobalCommands.cpp
+index f4546575b..c5ebdda10 100644
+--- a/pcsx2/gui/GlobalCommands.cpp
++++ b/pcsx2/gui/GlobalCommands.cpp
+@@ -504,7 +504,7 @@ namespace Implementations
+ 		States_SetCurrentSlot(slot);
+ 		States_DefrostCurrentSlot();
+ 	}
+-
++		
+ 	void States_SaveSlot0()
+ 	{
+ 		States_SaveSlot(0);
+@@ -605,6 +605,123 @@ namespace Implementations
+ 		States_LoadSlot(9);
+ 	}
+ #endif
++	
++	void States_SaveSlot_direct(int slot)
++	{
++		int curslot=States_GetCurrentSlot();
++		States_SetCurrentSlot(slot);
++		States_FreezeCurrentSlot();
++		States_SetCurrentSlot(curslot);
++	}
++
++	void States_LoadSlot_direct(int slot)
++	{
++		int curslot=States_GetCurrentSlot();
++		States_SetCurrentSlot(slot);
++		States_DefrostCurrentSlot();
++		States_SetCurrentSlot(curslot);
++	}
++	
++	
++	void States_SaveSlot_direct0()
++	{
++		States_SaveSlot_direct(0);
++	}
++
++	void States_SaveSlot_direct1()
++	{
++		States_SaveSlot_direct(1);
++	}
++
++	void States_SaveSlot_direct2()
++	{
++		States_SaveSlot_direct(2);
++	}
++
++	void States_SaveSlot_direct3()
++	{
++		States_SaveSlot_direct(3);
++	}
++
++	void States_SaveSlot_direct4()
++	{
++		States_SaveSlot_direct(4);
++	}
++
++	void States_SaveSlot_direct5()
++	{
++		States_SaveSlot_direct(5);
++	}
++
++	void States_SaveSlot_direct6()
++	{
++		States_SaveSlot_direct(6);
++	}
++
++	void States_SaveSlot_direct7()
++	{
++		States_SaveSlot_direct(7);
++	}
++
++	void States_SaveSlot_direct8()
++	{
++		States_SaveSlot_direct(8);
++	}
++
++	void States_SaveSlot_direct9()
++	{
++		States_SaveSlot_direct(9);
++	}
++
++	void States_LoadSlot_direct0()
++	{
++		States_LoadSlot_direct(0);
++	}
++
++	void States_LoadSlot_direct1()
++	{
++		States_LoadSlot_direct(1);
++	}
++
++	void States_LoadSlot_direct2()
++	{
++		States_LoadSlot_direct(2);
++	}
++
++	void States_LoadSlot_direct3()
++	{
++		States_LoadSlot_direct(3);
++	}
++
++	void States_LoadSlot_direct4()
++	{
++		States_LoadSlot_direct(4);
++	}
++
++	void States_LoadSlot_direct5()
++	{
++		States_LoadSlot_direct(5);
++	}
++
++	void States_LoadSlot_direct6()
++	{
++		States_LoadSlot_direct(6);
++	}
++
++	void States_LoadSlot_direct7()
++	{
++		States_LoadSlot_direct(7);
++	}
++
++	void States_LoadSlot_direct8()
++	{
++		States_LoadSlot_direct(8);
++	}
++
++	void States_LoadSlot_direct9()
++	{
++		States_LoadSlot_direct(9);
++	}
+ }
+ 
+ // --------------------------------------------------------------------------------------
+@@ -791,6 +908,26 @@ static const GlobalCommandDescriptor CommandDeclarations[] =
+ 	{ "States_LoadSlot8"			, Implementations::States_LoadSlot8,			NULL, NULL, false },
+ 	{ "States_LoadSlot9"			, Implementations::States_LoadSlot9,			NULL, NULL, false },
+ #endif
++	{ "States_SaveSlot_direct0"			, Implementations::States_SaveSlot_direct0,			NULL, NULL, false },
++	{ "States_SaveSlot_direct1"			, Implementations::States_SaveSlot_direct1,			NULL, NULL, false },
++	{ "States_SaveSlot_direct2"			, Implementations::States_SaveSlot_direct2,			NULL, NULL, false },
++	{ "States_SaveSlot_direct3"			, Implementations::States_SaveSlot_direct3,			NULL, NULL, false },
++	{ "States_SaveSlot_direct4"			, Implementations::States_SaveSlot_direct4,			NULL, NULL, false },
++	{ "States_SaveSlot_direct5"			, Implementations::States_SaveSlot_direct5,			NULL, NULL, false },
++	{ "States_SaveSlot_direct6"			, Implementations::States_SaveSlot_direct6,			NULL, NULL, false },
++	{ "States_SaveSlot_direct7"			, Implementations::States_SaveSlot_direct7,			NULL, NULL, false },
++	{ "States_SaveSlot_direct8"			, Implementations::States_SaveSlot_direct8,			NULL, NULL, false },
++	{ "States_SaveSlot_direct9"			, Implementations::States_SaveSlot_direct9,			NULL, NULL, false },
++	{ "States_LoadSlot_direct0"			, Implementations::States_LoadSlot_direct0,			NULL, NULL, false },
++	{ "States_LoadSlot_direct1"			, Implementations::States_LoadSlot_direct1,			NULL, NULL, false },
++	{ "States_LoadSlot_direct2"			, Implementations::States_LoadSlot_direct2,			NULL, NULL, false },
++	{ "States_LoadSlot_direct3"			, Implementations::States_LoadSlot_direct3,			NULL, NULL, false },
++	{ "States_LoadSlot_direct4"			, Implementations::States_LoadSlot_direct4,			NULL, NULL, false },
++	{ "States_LoadSlot_direct5"			, Implementations::States_LoadSlot_direct5,			NULL, NULL, false },
++	{ "States_LoadSlot_direct6"			, Implementations::States_LoadSlot_direct6,			NULL, NULL, false },
++	{ "States_LoadSlot_direct7"			, Implementations::States_LoadSlot_direct7,			NULL, NULL, false },
++	{ "States_LoadSlot_direct8"			, Implementations::States_LoadSlot_direct8,			NULL, NULL, false },
++	{ "States_LoadSlot_direct9"			, Implementations::States_LoadSlot_direct9,			NULL, NULL, false },
+ 	// Command Declarations terminator:
+ 	// (must always be last in list!!)
+ 	{ NULL }
+-- 
+2.23.0
+
