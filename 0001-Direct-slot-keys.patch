@@ -1,0 +1,102 @@
+From 7e2969ffadc9a6fa686b9a56c7cc0f6db670894c Mon Sep 17 00:00:00 2001
+From: y-salnikov <y.salnikov65535@gmail.com>
+Date: Thu, 7 Nov 2019 23:54:25 +0400
+Subject: [PATCH] Direct slot keys
+
+---
+ pcsx2/gui/FrameForGS.cpp     | 10 ++++++++
+ pcsx2/gui/GlobalCommands.cpp | 50 ++++++++++++++++++++++++++++++++++++
+ 2 files changed, 60 insertions(+)
+
+diff --git a/pcsx2/gui/FrameForGS.cpp b/pcsx2/gui/FrameForGS.cpp
+index fa625be96..4892b45e3 100644
+--- a/pcsx2/gui/FrameForGS.cpp
++++ b/pcsx2/gui/FrameForGS.cpp
+@@ -85,6 +85,16 @@ void GSPanel::InitDefaultAccelerators()
+ 	m_Accels->Map( AAC( WXK_F12 ),				"Sys_RecordingToggle" );
+ 
+ 	m_Accels->Map( FULLSCREEN_TOGGLE_ACCELERATOR_GSPANEL,		"FullscreenToggle" );
++	m_Accels->Map(AAC(wxKeyCode('0')), "States_SetCurrentSlot0");
++	m_Accels->Map(AAC(wxKeyCode('1')), "States_SetCurrentSlot1");
++	m_Accels->Map(AAC(wxKeyCode('2')), "States_SetCurrentSlot2");
++	m_Accels->Map(AAC(wxKeyCode('3')), "States_SetCurrentSlot3");
++	m_Accels->Map(AAC(wxKeyCode('4')), "States_SetCurrentSlot4");
++	m_Accels->Map(AAC(wxKeyCode('5')), "States_SetCurrentSlot5");
++	m_Accels->Map(AAC(wxKeyCode('6')), "States_SetCurrentSlot6");
++	m_Accels->Map(AAC(wxKeyCode('7')), "States_SetCurrentSlot7");
++	m_Accels->Map(AAC(wxKeyCode('8')), "States_SetCurrentSlot8");
++	m_Accels->Map(AAC(wxKeyCode('9')), "States_SetCurrentSlot9");
+ }
+ 
+ #ifndef DISABLE_RECORDING
+diff --git a/pcsx2/gui/GlobalCommands.cpp b/pcsx2/gui/GlobalCommands.cpp
+index 75fd9e1cc..c856cc69e 100644
+--- a/pcsx2/gui/GlobalCommands.cpp
++++ b/pcsx2/gui/GlobalCommands.cpp
+@@ -605,6 +605,46 @@ namespace Implementations
+ 		States_LoadSlot(9);
+ 	}
+ #endif
++	void States_SetCurrentSlot0()
++	{
++		States_SetCurrentSlot(0);
++	}
++	void States_SetCurrentSlot1()
++	{
++		States_SetCurrentSlot(1);
++	}
++	void States_SetCurrentSlot2()
++	{
++		States_SetCurrentSlot(2);
++	}
++	void States_SetCurrentSlot3()
++	{
++		States_SetCurrentSlot(3);
++	}
++	void States_SetCurrentSlot4()
++	{
++		States_SetCurrentSlot(4);
++	}
++	void States_SetCurrentSlot5()
++	{
++		States_SetCurrentSlot(5);
++	}
++	void States_SetCurrentSlot6()
++	{
++		States_SetCurrentSlot(6);
++	}
++	void States_SetCurrentSlot7()
++	{
++		States_SetCurrentSlot(7);
++	}
++	void States_SetCurrentSlot8()
++	{
++		States_SetCurrentSlot(8);
++	}
++	void States_SetCurrentSlot9()
++	{
++		States_SetCurrentSlot(9);
++	}
+ }
+ 
+ // --------------------------------------------------------------------------------------
+@@ -791,6 +831,16 @@ static const GlobalCommandDescriptor CommandDeclarations[] =
+ 	{ "States_LoadSlot8"			, Implementations::States_LoadSlot8,			NULL, NULL, false },
+ 	{ "States_LoadSlot9"			, Implementations::States_LoadSlot9,			NULL, NULL, false },
+ #endif
++	{ "States_SetCurrentSlot0"		, Implementations::States_SetCurrentSlot0,		NULL, NULL, false },
++	{ "States_SetCurrentSlot1"		, Implementations::States_SetCurrentSlot1,		NULL, NULL, false },
++	{ "States_SetCurrentSlot2"		, Implementations::States_SetCurrentSlot2,		NULL, NULL, false },
++	{ "States_SetCurrentSlot3"		, Implementations::States_SetCurrentSlot3,		NULL, NULL, false },
++	{ "States_SetCurrentSlot4"		, Implementations::States_SetCurrentSlot4,		NULL, NULL, false },
++	{ "States_SetCurrentSlot5"		, Implementations::States_SetCurrentSlot5,		NULL, NULL, false },
++	{ "States_SetCurrentSlot6"		, Implementations::States_SetCurrentSlot6,		NULL, NULL, false },
++	{ "States_SetCurrentSlot7"		, Implementations::States_SetCurrentSlot7,		NULL, NULL, false },
++	{ "States_SetCurrentSlot8"		, Implementations::States_SetCurrentSlot8,		NULL, NULL, false },
++	{ "States_SetCurrentSlot9"		, Implementations::States_SetCurrentSlot9,		NULL, NULL, false },
+ 	// Command Declarations terminator:
+ 	// (must always be last in list!!)
+ 	{ NULL }
+-- 
+2.24.0
+
